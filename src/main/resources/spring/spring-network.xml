@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <!-- network config -->
+    <bean class="com.tianzh.cm.network.http.HttpServer" init-method="start">
+        <property name="port" value="${http.server.port}"/>
+        <property name="pipelineFactory" ref="httpServerPipelineFactory"/>
+    </bean>
+
+    <bean id="httpServerPipelineFactory" class="com.tianzh.cm.network.http.HttpServerPipelineFactory">
+        <property name="channelUpstreamHandler" ref="httpRequestHandler"/>
+    </bean>
+
+    <bean id="httpRequestHandler" class="com.tianzh.cm.network.http.HttpRequestHandler">
+        <property name="urlMaps">
+            <map>
+                <entry key="/init">
+                    <ref bean="initFactory"/>
+                </entry>
+                <entry key="/order">
+                    <ref bean="orderFactory"/>
+                </entry>
+                <entry key="/report">
+                    <ref bean="reportFactory"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="initFactory" class="com.tianzh.cm.network.protocol.JsonCodecFactory">
+        <constructor-arg index="0" ref="initBean"/>
+        <constructor-arg index="1" ref="jsonEncoder"/>
+    </bean>
+
+    <bean id="initBean" class="com.tianzh.cm.network.protocol.decoder.json.JsonDecoder">
+        <property name="className" value="com.tianzh.cm.model.UserToken"/>
+    </bean>
+
+    <bean id="orderFactory" class="com.tianzh.cm.network.protocol.JsonCodecFactory">
+        <constructor-arg index="0" ref="orderBean"/>
+        <constructor-arg index="1" ref="jsonEncoder"/>
+    </bean>
+
+    <bean id="orderBean" class="com.tianzh.cm.network.protocol.decoder.json.JsonDecoder">
+        <property name="className" value="com.tianzh.cm.model.PayOrder"/>
+    </bean>
+
+    <bean id="reportFactory" class="com.tianzh.cm.network.protocol.JsonCodecFactory">
+        <constructor-arg index="0" ref="reportBean"/>
+        <constructor-arg index="1" ref="jsonEncoder"/>
+    </bean>
+
+    <bean id="reportBean" class="com.tianzh.cm.network.protocol.decoder.json.JsonDecoder">
+        <property name="className" value="com.tianzh.cm.model.ChargeOrderReport"/>
+    </bean>
+
+    <bean id="jsonEncoder" class="com.tianzh.cm.network.protocol.encoder.json.JsonEncoder"/>
+    <bean id="kvEncoder" class="com.tianzh.cm.network.protocol.encoder.kv.KvEncoder"/>
+    <bean id="xmlEncoder" class="com.tianzh.cm.network.protocol.encoder.xml.XmlEncoder"/>
+</beans>

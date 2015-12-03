@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="charge-order">
+    <resultMap id="feepointMap" type="com.tianzh.cm.service.model.FeePoint">
+        <result property="productName" column="product_name"/>
+        <result property="feePointName" column="feePoint_name"/>
+        <result property="price" column="price"/>
+    </resultMap>
+
+    <resultMap id="zhFeepointMap" type="com.tianzh.cm.service.model.FeePoint">
+        <result property="zhangKey" column="zhang_key"/>
+        <result property="zhangPricePointId" column="zhang_priceid"/>
+        <result property="zhangAppVersion" column="app_version"/>
+        <result property="zhPrice" column="price"/>
+        <result property="zhFeeDesc" column="feepoint_desc"/>
+    </resultMap>
+
+    <resultMap id="letuFeepointMap" type="com.tianzh.cm.service.model.FeePoint">
+        <result property="letuPayPointNum" column="pointnum"/>
+        <result property="letuSdkChannelId" column="sdk_channelId"/>
+        <result property="letuPayType" column="paytype"/>
+        <result property="letuGameType" column="gametype"/>
+        <result property="letuShowUIKey" column="show_UIKey"/>
+        <result property="letuMerchantKey" column="merchant_key"/>
+        <result property="letuPrice" column="price"/>
+        <result property="letuFeeDesc" column="feepoint_desc"/>
+    </resultMap>
+
+    <resultMap id="yLFeepointMap" type="com.tianzh.cm.service.model.FeePoint">
+        <result property="yLIsOnline" column="is_online"/>
+        <result property="yLGoodsId" column="goods_id"/>
+        <result property="yLPrice" column="price"/>
+        <result property="yLFeeDesc" column="feepoint_desc"/>
+    </resultMap>
+
+    <resultMap id="thPayPropertyMap" type="com.tianzh.cm.service.model.ThPayProperty">
+        <result property="ThPayId" column="id"/>
+        <result property="weight" column="weight"/>
+    </resultMap>
+
+    <insert id="insertThpayOrder" parameterType="com.tianzh.cm.service.model.ChargeOrderBean"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+        tbl_charge_order_info(
+          tianzh_order_id,
+          user_order_id,
+          user_token,
+          app_id,
+          app_name,
+          channel_id,
+          product_id,
+          product_name,
+          product_price,
+          imsi,
+          imei,
+          phone,
+          province_id,
+          province,
+          city_id,
+          city,
+          model,
+          provider_id,
+          thpay_type,
+          thpay_name,
+          order_status,
+          status_desc,
+          create_time
+        )
+        VALUES(
+          #{tianzhOrderId,jdbcType=VARCHAR},
+          #{userOrderId,jdbcType=VARCHAR},
+          #{userToken,jdbcType=VARCHAR},
+          #{appId,jdbcType=VARCHAR},
+          #{appName,jdbcType=VARCHAR},
+          #{channelId,jdbcType=VARCHAR},
+          #{productId,jdbcType=VARCHAR},
+          #{productName,jdbcType=VARCHAR},
+          #{productPrice,jdbcType=INTEGER},
+          #{imsi,jdbcType=VARCHAR},
+          #{imei,jdbcType=VARCHAR},
+          #{phone,jdbcType=VARCHAR},
+          #{provinceId,jdbcType=VARCHAR},
+          #{province,jdbcType=INTEGER},
+          #{cityId,jdbcType=INTEGER},
+          #{city,jdbcType=VARCHAR},
+          #{model,jdbcType=VARCHAR},
+          #{providerId,jdbcType=INTEGER},
+          #{thpayType,jdbcType=INTEGER},
+          #{thpayName,jdbcType=VARCHAR},
+          #{orderStatus,jdbcType=INTEGER},
+          #{statusDesc,jdbcType=VARCHAR},
+          #{createTime}
+        )
+
+
+    </insert>
+
+    <update id="updateThpayOrder" parameterType="com.tianzh.cm.model.ChargeOrderReport">
+    UPDATE
+    tbl_charge_order_info
+    SET
+    order_status = #{statusCode,jdbcType=INTEGER},
+    status_desc = #{discribe,jdbcType=VARCHAR},
+    status_code = #{discribeCode,jdbcType=VARCHAR}
+    WHERE
+    id = #{id,jdbcType=INTEGER}
+
+  </update>
+
+    <update id="updateThpayOrder2" parameterType="com.tianzh.cm.service.model.ChargeOrderBean">
+    UPDATE
+    tbl_charge_order_info
+    SET
+    order_status = #{orderStatus,jdbcType=INTEGER}
+    WHERE
+    id = #{id,jdbcType=INTEGER}
+
+  </update>
+
+    <select id="findFeePoint" parameterType="java.lang.String" resultMap="feepointMap">
+    SELECT
+    product_name,
+    feePoint_name,
+    price
+    FROM
+    tbl_feepoint_info
+    WHERE
+    feePoint_id = #{productId}
+    limit 1
+  </select>
+
+    <select id="findZhPayParams" parameterType="java.lang.String" resultMap="zhFeepointMap">
+        SELECT
+        zhang_key,
+        zhang_priceid,
+        app_version,
+        price,
+        feepoint_desc
+        FROM
+        tbl_feepoint_zhang
+        WHERE
+        feePoint_id = (SELECT
+                        id
+                        FROM
+                        tbl_feepoint_info
+                        WHERE
+                        feePoint_id = #{productId}
+                        limit 1)
+        limit 1
+    </select>
+
+    <select id="findLTPayParams" parameterType="java.lang.String" resultMap="letuFeepointMap">
+        SELECT
+        pointnum,
+        sdk_channelId,
+        paytype,
+        gametype,
+        show_UIKey,
+        merchant_key,
+        price,
+        feepoint_desc
+        FROM
+        tbl_feepoint_letu
+        WHERE
+        feePoint_id = (SELECT
+        id
+        FROM
+        tbl_feepoint_info
+        WHERE
+        feePoint_id = #{productId}
+        limit 1)
+        limit 1
+    </select>
+
+    <select id="findYlPayParams" parameterType="java.lang.String" resultMap="yLFeepointMap">
+        SELECT
+        is_online,
+        goods_id,
+        price,
+        feepoint_desc
+        FROM
+        tbl_feepoint_yl
+        WHERE
+        feePoint_id = (SELECT
+        id
+        FROM
+        tbl_feepoint_info
+        WHERE
+        feePoint_id = #{productId}
+        limit 1)
+        limit 1
+    </select>
+
+    <select id="getAllThPay" resultMap="thPayPropertyMap">
+        SELECT
+        id,
+        weight
+        FROM
+        tbl_th_pay
+        WHERE
+        status = 0
+    </select>
+
+
+    <select id="getAvailableProvince" parameterType="java.util.HashMap" resultType="java.lang.String">
+        SELECT
+        province
+        FROM
+        tbl_th_pay_province
+        WHERE
+        provider_id = #{operatorId}
+        AND
+        th_pay_id = #{ThPayId}
+        AND
+        province_type = #{provinceType}
+    </select>
+
+</mapper>

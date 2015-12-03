@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+       <bean id="thPayService" class="com.tianzh.cm.service.thirdpay.ChargeOrderServiceImpl">
+              <property name="cache" ref="cache"/>
+              <property name="thPayOrderDao" ref="thPayOrderDao"/>
+       </bean>
+
+       <bean id="genUserTokenService" class="com.tianzh.cm.service.init.GenUserTokenServiceImpl">
+
+              <property name="genUserTokenDao" ref="genUserTokenDao"/>
+       </bean>
+</beans>

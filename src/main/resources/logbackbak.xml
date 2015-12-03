@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+    <appender name="STDOUT"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </layout>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>D:\zsyjpay-CM\log\logFile.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>D:\zsyjpay-CM\log\logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
+
+            <!-- keep 30 days worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d  [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="SMS_ORDER_BI_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>D:\zsyjpay-CM\log\bi\sms_order_bi.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>D:\zsyjpay-CM\log\bi\sms_order_bi.%d{yyyy-MM-dd}.log</fileNamePattern>
+
+            <!-- keep 30 days worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="THIRD_ORDER_BI_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>D:\zsyjpay-CM\log\bi\third_order_bi.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>D:\zsyjpay-CM\log\bi\third_order_bi.%d{yyyy-MM-dd}.log</fileNamePattern>
+
+            <!-- keep 30 days worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="RESPONSE_BI_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>D:\zsyjpay-CM\log\bi\response_bi.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>D:\zsyjpay-CM\log\bi\response_bi.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="BASEPAY_BI_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>D:\zsyjpay-CM\log\bi\basepay_bi.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>D:\zsyjpay-CM\log\bi\basepay_bi.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="PAYORDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>D:\zsyjpay-CM\log\payorder\payorder.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>D:\zsyjpay-CM\log\payorder\payorder.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="SMS" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>D:\zsyjpay-CM\log\sms\sms.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>D:\zsyjpay-CM\log\sms\sms.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="YDSMSNOTIFY" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>D:\zsyjpay-CM\log\yidongjidismsnotify\yidongjidismsnotify.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>D:\zsyjpay-CM\log\yidongjidismsnotify\yidongjidismsnotify.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="NORSMSNOTIFY" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>D:\zsyjpay-CM\log\normalsmsnotify\normalsmsnotify.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>D:\zsyjpay-CM\log\normalsmsnotify\normalsmsnotify.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="INCOMEMONITORING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>D:\zsyjpay-CM\log\incomemonitoring\incomemonitoring.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>D:\zsyjpay-CM\log\incomemonitoring\incomemonitoring.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <logger name="java.sql" level="DEBUG" additivity="true"/>
+    <logger name="org.mybatis" level="DEBUG" additivity="true"/>
+
+    <logger name="sms_order_bi" level="info" additivity="false">
+        <appender-ref ref="SMS_ORDER_BI_APPENDER"/>
+    </logger>
+    <logger name="third_order_bi" level="info" additivity="false">
+        <appender-ref ref="THIRD_ORDER_BI_APPENDER"/>
+    </logger>
+    <logger name="response_bi" level="info" additivity="false">
+        <appender-ref ref="RESPONSE_BI_APPENDER"/>
+    </logger>
+    <logger name="basepay_bi" level="info" additivity="false">
+        <appender-ref ref="BASEPAY_BI_APPENDER"/>
+    </logger>
+    <logger name="normalsmsnotify" level="DEBUG" additivity="false">
+        <appender-ref ref="NORSMSNOTIFY"/>
+    </logger>
+    <logger name="yidongjidismsnotify" level="DEBUG" additivity="false">
+        <appender-ref ref="YDSMSNOTIFY"/>
+    </logger>
+    <logger name="sms" level="DEBUG" additivity="false">
+        <appender-ref ref="SMS"/>
+    </logger>
+    <logger name="payorder" level="DEBUG" additivity="false">
+        <appender-ref ref="PAYORDER"/>
+    </logger>
+    <logger name="incomemonotoring" level="DEBUG" additivity="false">
+        <appender-ref ref="INCOMEMONITORING"/>
+    </logger>
+
+
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="usertoken">
+
+    <insert id="insertUserToken" parameterType="com.tianzh.cm.service.model.UserTokenBean" useGeneratedKeys="true" keyProperty="id">
+      INSERT INTO
+      tbl_useful_user(
+      user_token,
+      status,
+      app_id,
+      channel,
+      create_time
+      )
+      VALUES (
+      #{userToken,jdbcType=VARCHAR},
+      #{status,jdbcType=INTEGER},
+      #{appid,jdbcType=VARCHAR},
+      #{channel,jdbcType=VARCHAR},
+      #{createTime}
+      )
+    </insert>
+
+
+</mapper>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+	
+	
+
+    <appender name="STDOUT"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </layout>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/home/web/logs/cm/logFile.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>/home/web/logs/cm/logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
+
+            <!-- keep 30 days worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="EMPTY_PROVINCE_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/home/web/logs/cm/exception/empty_province.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>/home/web/logs/cm/exception/empty_province.%d{yyyy-MM-dd}.log</fileNamePattern>
+
+            <!-- keep 30 days worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="EMPTY_PROVIDER_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/home/web/logs/cm/exception/empty_provider.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>/home/web/logs/cm/exception/empty_provider.%d{yyyy-MM-dd}.log</fileNamePattern>
+
+            <!-- keep 30 days worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="EMPTY_THPAY_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/home/web/logs/cm/exception/empty_thpay.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/home/web/logs/cm/exception/empty_thpay.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="UNKNOWN_IMSI" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/home/web/logs/cm/exception/unknown_imsi.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/home/web/logs/cm/exception/unknown_imsi.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="LETUPAY_BI_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/home/web/logs/cm/bi/letupay_bi.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/home/web/logs/cm/bi/letupay_bi.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+	
+	<appender name="YUANLANGPAY_BI_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/home/web/logs/cm/bi/yuanlangpay_bi.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/home/web/logs/cm/bi/yuanlangpay_bi.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+	
+	<appender name="ZHANGPAY_BI_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/home/web/logs/cm/bi/zhangpay.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/home/web/logs/cm/bi/zhangpay.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ZHUQUEPAY_BI_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/home/web/logs/cm/bi/zhuquepay.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/home/web/logs/cm/bi/zhuquepay.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="HTTP_RESPONSE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/home/web/logs/cm/exception/httpResponse.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/home/web/logs/cm/exception/httpResponse.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+	
+	<appender name="THPAYORDER_DAO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/home/web/logs/cm/exception/thpayOrderDao.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/home/web/logs/cm/exception/thpayOrderDao.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+	
+	<appender name="GENTOKEN_DAO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/home/web/logs/cm/exception/gentokenDao.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/home/web/logs/cm/exception/gentokenDao.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="REDIS_EXCEPTION" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/home/web/logs/cm/exception/redisException.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/home/web/logs/cm/exception/redisException.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+	
+	
+
+    <logger name="java.sql" level="DEBUG" additivity="true"/>
+    <logger name="org.mybatis" level="DEBUG" additivity="true"/>
+
+    <logger name="empty_province" level="info" additivity="false">
+        <appender-ref ref="EMPTY_PROVINCE_APPENDER"/>
+    </logger>
+    <logger name="empty_provider" level="info" additivity="false">
+        <appender-ref ref="EMPTY_PROVIDER_APPENDER"/>
+    </logger>
+    <logger name="empty_thpay" level="info" additivity="false">
+        <appender-ref ref="EMPTY_THPAY_APPENDER"/>
+    </logger>
+    <logger name="unknown_imsi" level="info" additivity="false">
+        <appender-ref ref="UNKNOWN_IMSI"/>
+    </logger>
+    <logger name="letupay_bi" level="info" additivity="false">
+        <appender-ref ref="LETUPAY_BI_APPENDER"/>
+    </logger>
+	
+	<logger name="yuanlangpay_bi" level="info" additivity="false">
+        <appender-ref ref="YUANLANGPAY_BI_APPENDER"/>
+    </logger>
+    <logger name="zhangpay_bi" level="info" additivity="false">
+        <appender-ref ref="ZHANGPAY_BI_APPENDER"/>
+    </logger>
+    <logger name="zhuquepay_bi" level="info" additivity="false">
+        <appender-ref ref="ZHUQUEPAY_BI_APPENDER"/>
+    </logger>
+    <logger name="http_response" level="info" additivity="false">
+        <appender-ref ref="HTTP_RESPONSE"/>
+    </logger>
+    <logger name="thpayorder_dao" level="info" additivity="false">
+        <appender-ref ref="THPAYORDER_DAO"/>
+    </logger>
+    <logger name="gentoken_dao" level="info" additivity="false">
+        <appender-ref ref="GENTOKEN_DAO"/>
+    </logger>
+    <logger name="redis_exception" level="info" additivity="false">
+        <appender-ref ref="REDIS_EXCEPTION"/>
+    </logger>
+
+
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" lazy-init="false">
+        <property name="driverClass" value="${database.driverClass}"/>
+        <property name="jdbcUrl" value="${database.jdbcUrl}"/>
+        <property name="user" value="${database.user}"/>
+        <property name="password" value="${database.password}"/>
+        <property name="initialPoolSize" value="${database.initialPoolSize}"/>
+        <property name="minPoolSize" value="${database.minPoolSize}"/>
+        <property name="maxPoolSize" value="${database.maxPoolSize}"/>
+        <property name="maxIdleTime" value="${database.maxIdleTime}"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+
+</beans>

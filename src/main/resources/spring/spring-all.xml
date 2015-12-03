@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:config.properties"/>
+        <property name="fileEncoding" value="utf-8"/>
+    </bean>
+
+    <import resource="spring-network.xml"/>
+    <import resource="spring-state.xml"/>
+    <import resource="spring-cache.xml"/>
+    <import resource="spring-repository.xml"/>
+    <import resource="spring-dao.xml"/>
+    <import resource="spring-service.xml"/>
+    <!--<import resource="spring-quartz.xml"/>-->
+
+    <bean id="containerWrapper" class="com.tianzh.cm.container.DefaultContainerWrapper" scope="singleton"/>
+
+    <bean id="appContext" class="com.tianzh.cm.context.AppContext" scope="singleton">
+        <property name="containerWrapper" ref="containerWrapper"/>
+    </bean>
+
+
+    <bean id="eventFirer" class="com.tianzh.cm.event.EventFirer" scope="singleton">
+        <constructor-arg ref="disruptorFactory"/>
+    </bean>
+
+    <bean id="disruptorParams" class="com.tianzh.cm.event.disuptor.DisruptorParams">
+        <constructor-arg value="${disruptor.params.ringBufferSize}"/>
+    </bean>
+
+    <bean id="disruptorFactory" class="com.tianzh.cm.event.disuptor.DisruptorFactory">
+        <constructor-arg index="0" ref="disruptorParams"/>
+        <constructor-arg index="1" ref="containerWrapper"/>
+    </bean>
+
+    <bean class="com.tianzh.cm.util.event.EventUtils" scope="singleton">
+        <property name="eventFirer" ref="eventFirer"/>
+        <property name="timeoutForReturnResult" value="${disruptor.event.timeout.milliseconds}"/>
+    </bean>
+
+    <bean class="com.tianzh.cm.util.http.HttpUtils" scope="singleton">
+        <property name="encrypt" value="${content.encrypt}"/>
+    </bean>
+</beans>

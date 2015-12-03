@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean id="genUserTokenState" class="com.tianzh.cm.state.GenUserTokenState">
+        <property name="genUserTokenService" ref="genUserTokenService"/>
+    </bean>
+    <bean id="receivePayOrderState" class="com.tianzh.cm.state.ReceivePayOrderState">
+        <property name="chargeOrderService" ref="thPayService"/>
+        <property name="genUserTokenService" ref="genUserTokenService"/>
+    </bean>
+    <bean id="thPayOrderReportState" class="com.tianzh.cm.state.ChargeOrderReportState">
+        <property name="chargeOrderService" ref="thPayService"/>
+    </bean>
+    <bean id="letuPayState" class="com.tianzh.cm.state.LetuPayState">
+        <property name="chargeOrderService" ref="thPayService"/>
+    </bean>
+    <bean id="yuanLangPayState" class="com.tianzh.cm.state.YuanLangPayState">
+        <property name="chargeOrderService" ref="thPayService"/>
+    </bean>
+
+    <bean id="selfPayState" class="com.tianzh.cm.state.SelfPayState">
+    </bean>
+    <bean id="zhangPayState" class="com.tianzh.cm.state.ZhangPayState">
+        <property name="chargeOrderService" ref="thPayService"/>
+    </bean>
+    <bean id="zhuquePayState" class="com.tianzh.cm.state.ZhuquePayState">
+        <property name="chargeOrderService" ref="thPayService"/>
+    </bean>
+
+</beans>
